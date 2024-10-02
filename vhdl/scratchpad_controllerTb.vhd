@@ -28,7 +28,7 @@ architecture sim of scratchpad_controllerTb is
     constant ClockPeriod        : time    := 10 ns;
     constant datawidth          : natural := 10;            -- datawidth of each incoming pixel
     constant img_width          : natural := 7;             -- Width of the image (number of columns)
-    constant kernel_size        : integer := 5;             -- Kernel size for convolution
+    constant kernel_size        : integer := 3;             -- Kernel size for convolution
     constant max_kernel_size    : natural := 7;             -- Maximum size of kernel supported
     -- Start and stop conditions for reading from the scratchpad
     constant start_conv         : natural := (kernel_size-1)*img_width + kernel_size - kernel_size*(kernel_size-1);      -- counter value at which read operation can start
@@ -39,8 +39,8 @@ architecture sim of scratchpad_controllerTb is
     signal write_en             : std_logic := '0';             -- Enable signal for writing data
     signal read_en              : std_logic;                    -- Read enable signal from the DUT
     signal full                 : std_logic;                    -- Full signal from the DUT
-    signal data_in              : std_logic_vector(datawidth-1 downto 0) := (others => '1');
-    signal data_out             : std_logic_vector(datawidth-1 downto 0) := (others => 'U');
+    signal data_in              : std_logic_vector(datawidth-1 downto 0) := (others => '1');    -- Input data to the scratchpad
+    signal data_out             : std_logic_vector(datawidth-1 downto 0) := (others => 'U');    -- Output data from the scratchpad
 
 begin
 

@@ -145,7 +145,7 @@ architecture sim of snn_pe_arrayTb is
         Clk <= not Clk after ClockPeriod / 2;
 
         tb_process: process is
-            file spike_file_buf             : text open read_mode is "current_test/insp_8b_tsmerged_vhdl.txt";  -- name of file that has input spikes
+            file spike_file_buf             : text open read_mode is "../current_test/insp_8b_tsmerged_vhdl.txt";  -- name of file that has input spikes
             variable line_buf, l            : line;
             variable i, j                   : integer;
             variable counter                : integer := 0;
@@ -153,7 +153,7 @@ architecture sim of snn_pe_arrayTb is
             variable timestep_count         : integer := timesteps-1;
             variable address_inter          : unsigned(address'length-1 downto 0) := (others => '0');
             variable firing_signal_record   : std_logic_2d_array(timesteps-1 downto 0)(filters-1 downto 0)(out_img_size-1 downto 0);
-            file output_file                : text open write_mode is "firing_signal_data8b.txt";                -- file to store output spikes
+            file output_file                : text open write_mode is "../firing_signal_data8b.txt";                -- file to store output spikes
             
         begin
             for i in firing_signal_record'range loop
@@ -164,7 +164,7 @@ architecture sim of snn_pe_arrayTb is
 
             ------------------ Loading the L2 cache SRAM -----------------
 
-            read_memory_from_file("current_test/scnn_quant8b_weight_int.txt", mem_array);               -- name of file that has weights
+            read_memory_from_file("../current_test/scnn_quant8b_weight_int.txt", mem_array);               -- name of file that has weights
             wait for 10 ns;
 
             report "End of loading L2 cache SRAM";
